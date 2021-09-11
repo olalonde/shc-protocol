@@ -1,5 +1,5 @@
 {
-  "name": "shc",
+  "name": "shc-protocol",
   "version": "1.0.0",
   "description": "Library for Smart Health Cards protocol",
   "main": "index.js",
