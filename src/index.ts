@@ -64,6 +64,6 @@ export default async function decode(rawText: string) {
   );
   const verifications = await verifySignature(jwt, payload.iss);
 
-  console.dir({ header, payload, verifications }, { depth: null });
+  // console.dir({ header, payload, verifications }, { depth: null });
   return { header, payload, verifications };
 }
