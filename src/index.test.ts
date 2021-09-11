@@ -28,5 +28,108 @@ test("decode invalid protocol", async () => {
 });
 
 test("decode", async () => {
-  expect(await decode(rawQrText)).toBe(true);
+  expect(await decode(rawQrText)).toMatchInlineSnapshot(`
+Object {
+  "header": Object {
+    "alg": "ES256",
+    "kid": "3Kfdg-XwP-7gXyywtUfUADwBumDOPKMQx-iELL11W9s",
+    "zip": "DEF",
+  },
+  "payload": Object {
+    "iss": "https://smarthealth.cards/examples/issuer",
+    "nbf": 1620847989.837,
+    "vc": Object {
+      "credentialSubject": Object {
+        "fhirBundle": Object {
+          "entry": Array [
+            Object {
+              "fullUrl": "resource:0",
+              "resource": Object {
+                "birthDate": "1951-01-20",
+                "name": Array [
+                  Object {
+                    "family": "Anyperson",
+                    "given": Array [
+                      "John",
+                      "B.",
+                    ],
+                  },
+                ],
+                "resourceType": "Patient",
+              },
+            },
+            Object {
+              "fullUrl": "resource:1",
+              "resource": Object {
+                "lotNumber": "0000001",
+                "occurrenceDateTime": "2021-01-01",
+                "patient": Object {
+                  "reference": "resource:0",
+                },
+                "performer": Array [
+                  Object {
+                    "actor": Object {
+                      "display": "ABC General Hospital",
+                    },
+                  },
+                ],
+                "resourceType": "Immunization",
+                "status": "completed",
+                "vaccineCode": Object {
+                  "coding": Array [
+                    Object {
+                      "code": "207",
+                      "system": "http://hl7.org/fhir/sid/cvx",
+                    },
+                  ],
+                },
+              },
+            },
+            Object {
+              "fullUrl": "resource:2",
+              "resource": Object {
+                "lotNumber": "0000007",
+                "occurrenceDateTime": "2021-01-29",
+                "patient": Object {
+                  "reference": "resource:0",
+                },
+                "performer": Array [
+                  Object {
+                    "actor": Object {
+                      "display": "ABC General Hospital",
+                    },
+                  },
+                ],
+                "resourceType": "Immunization",
+                "status": "completed",
+                "vaccineCode": Object {
+                  "coding": Array [
+                    Object {
+                      "code": "207",
+                      "system": "http://hl7.org/fhir/sid/cvx",
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+          "resourceType": "Bundle",
+          "type": "collection",
+        },
+        "fhirVersion": "4.0.1",
+      },
+      "type": Array [
+        "https://smarthealth.cards#health-card",
+        "https://smarthealth.cards#immunization",
+        "https://smarthealth.cards#covid19",
+      ],
+    },
+  },
+  "verifications": Object {
+    "origin": "https://smarthealth.cards/examples/issuer",
+    "trustable": true,
+    "verifiedBy": "3Kfdg-XwP-7gXyywtUfUADwBumDOPKMQx-iELL11W9s",
+  },
+}
+`);
 });

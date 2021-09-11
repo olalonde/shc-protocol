@@ -35,15 +35,23 @@ async function verifySignature(jwt: string, issuer: string) {
  * Convert a SHC raw string to a standard JWT
  * @param rawSHC The raw 'shc://' string (from a QR code)
  */
-export async function numericShcToJwt(rawData: string) {
+export function numericShcToJwt(rawData: string) {
   // Split into groups of 2 numeric characters each of which represent a single JWS char
   const codes = rawData.match(/(..?)/g) || [];
 
-  const jwt = codes
+  return codes
     .map((c) => parseInt(c, 10))
     .map((c) => String.fromCharCode(c + SMALLEST_B64_CHAR_CODE))
     .join("");
+}
 
+export default async function decode(rawText: string) {
+  const uri = new URL(rawText);
+  if (uri.protocol !== "shc:") {
+    throw new InvalidProtocol(uri.protocol);
+  }
+  const rawData = uri.pathname.substring(1);
+  const jwt = numericShcToJwt(rawData);
   // decode jwt
   const [headerBuf, compressedPayloadBuf] = jwt
     // There are two base64 strings (header and payload) separated by a "."
@@ -56,15 +64,6 @@ export async function numericShcToJwt(rawData: string) {
   );
   const verifications = await verifySignature(jwt, payload.iss);
 
+  console.dir({ header, payload, verifications }, { depth: null });
   return { header, payload, verifications };
-}
-
-export default async function decode(rawText: string) {
-  const uri = new URL(rawText);
-  if (uri.protocol !== "shc:") {
-    throw new InvalidProtocol(uri.protocol);
-  }
-  const rawData = uri.pathname.substring(1);
-  await numericShcToJwt(rawData);
-  return true;
 }
