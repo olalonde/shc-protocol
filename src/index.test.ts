@@ -1,5 +1,5 @@
-import wow from "./index"
+import wow from "./index";
 
-test('testing', () => {
-  expect(wow()).toBe(true)
-})
+test("testing", () => {
+  expect(wow()).toBe(true);
+});

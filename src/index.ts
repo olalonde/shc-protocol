@@ -1,3 +1,3 @@
 export default function wow() {
-  return true
+  return true;
 }
