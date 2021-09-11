@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "jest",
 		"prepare": "npm run compile",
 		"compile": "tsc",
 		"prepublishOnly": "npm test"
@@ -12,7 +12,9 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"@types/jest": "^27.0.1",
 		"jest": "^27.1.1",
+		"ts-jest": "^27.0.5",
 		"typescript": "^4.4.3"
 	}
 }
