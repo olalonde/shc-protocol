@@ -1,16 +1,18 @@
 {
-  "name": "smart-health-card",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "tsc",
-    "prepublishOnly": "npm test"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.4.3"
-  }
+	"name": "smart-health-card",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepare": "npm run compile",
+		"compile": "tsc",
+		"prepublishOnly": "npm test"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"jest": "^27.1.1",
+		"typescript": "^4.4.3"
+	}
 }
