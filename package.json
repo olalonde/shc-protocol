@@ -1,6 +1,6 @@
 {
   "name": "shc-protocol",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Library for Smart Health Cards protocol",
   "main": "./dist/index.js",
   "scripts": {
