@@ -46,11 +46,12 @@ export function numericShcToJwt(rawData: string) {
 }
 
 export default async function decode(rawText: string) {
-  const uri = new URL(rawText);
-  if (uri.protocol !== "shc:") {
-    throw new InvalidProtocol(uri.protocol);
+  const matches = rawText.match(/(.*):\/(.*)/) || [false, false, false];
+  const protocol = (matches[1] || "") as string;
+  const rawData = (matches[2] || "") as string;
+  if (protocol !== "shc") {
+    throw new InvalidProtocol(protocol);
   }
-  const rawData = uri.pathname.substring(1);
   const jwt = numericShcToJwt(rawData);
   // decode jwt
   const [headerBuf, compressedPayloadBuf] = jwt
