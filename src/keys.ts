@@ -1,5 +1,5 @@
 import { JWK } from "node-jose";
-import fetch from "node-fetch";
+import fetch from "cross-fetch";
 
 /** Cached keys used to validate SHC for some specific issuers */
 const cachedKeys = [
