@@ -10,6 +10,9 @@
     "prepublishOnly": "npm test",
     "format": "prettier --write src/"
   },
+  "files": [
+    "dist"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
