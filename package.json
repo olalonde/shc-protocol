@@ -13,12 +13,16 @@
   "files": [
     "dist"
   ],
+  "browser": {
+    "zlib": "pako"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.0.1",
     "@types/node-fetch": "^2.5.12",
     "@types/node-jose": "^1.1.8",
+    "@types/pako": "^1.0.2",
     "jest": "^27.1.1",
     "prettier": "^2.4.0",
     "ts-jest": "^27.0.5",
@@ -26,6 +30,7 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.2",
-    "node-jose": "^2.0.0"
+    "node-jose": "^2.0.0",
+    "pako": "^2.0.4"
   }
 }

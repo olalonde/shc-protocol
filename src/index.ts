@@ -1,5 +1,5 @@
-import zlib from "zlib";
-import { JWS, JWK } from "node-jose";
+import pako from "pako";
+import { JWS } from "node-jose";
 
 import getKeys from "./keys";
 
@@ -60,7 +60,7 @@ export default async function decode(rawText: string) {
 
   const header = JSON.parse(headerBuf.toString());
   const payload = JSON.parse(
-    zlib.inflateRawSync(compressedPayloadBuf).toString()
+    pako.inflateRaw(compressedPayloadBuf, { to: "string" })
   );
   const verifications = await verifySignature(jwt, payload.iss);
 
