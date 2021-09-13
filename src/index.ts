@@ -1,6 +1,5 @@
 import zlib from "zlib";
 import { JWS, JWK } from "node-jose";
-import axios from "axios";
 
 import getKeys from "./keys";
 
