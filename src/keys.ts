@@ -1,5 +1,5 @@
 import { JWK } from "node-jose";
-import axios from "axios";
+import fetch from "node-fetch";
 
 /** Cached keys used to validate SHC for some specific issuers */
 const cachedKeys = [
@@ -31,8 +31,8 @@ export default async function getKeys(issuer: string) {
     return JWK.asKey(key);
   } else {
     // Fetch keys from the issuer if available
-    const response = await axios.get(`${issuer}/.well-known/jwks.json`);
-    const jwks = response.data;
+    const response = await fetch(`${issuer}/.well-known/jwks.json`);
+    const jwks = (await response.json()) as object;
     return JWK.asKeyStore(jwks);
   }
 }
